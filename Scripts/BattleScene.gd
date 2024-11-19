@@ -55,6 +55,8 @@ func update_ui():
 	# Display player and enemy health
 	player_health_label.text = "Player Health: " + str(GameData.player_health)
 	enemy_health_label.text = "Enemy Health: " + str(enemy_health)
+	
+	
 
 func _on_attack_pressed():
 	if battle_state == BattleState.PLAYER_TURN:
@@ -109,6 +111,16 @@ func enemy_turn():
 	print("Enemy attacks you for", enemy_damage, "damage!")
 	update_ui()
 	player_defending = false
+	
+	#This checks if the player has died and plays the specific animations
+	if GameData.player_health <= 0:
+		await get_tree().create_timer(.4).timeout
+		battle_start.play("Player_Dead")
+		print("You have been defeated.")
+		
+		await get_tree().create_timer(1.0).timeout
+		emit_signal("battle_ended")
+		
 	battle_state = BattleState.PLAYER_TURN
 	player_buttons()
 
@@ -119,10 +131,6 @@ func end_turn():
 		print("Enemy defeated!")
 		
 		await get_tree().create_timer(1.0).timeout
-		emit_signal("battle_ended")
-		
-	elif GameData.player_health <= 0:
-		print("You have been defeated.")
 		emit_signal("battle_ended")
 		
 	else:
