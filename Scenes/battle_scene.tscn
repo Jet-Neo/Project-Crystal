@@ -1,0 +1,400 @@
+[gd_scene load_steps=37 format=3 uid="uid://l7sdqc0aca1e"]
+
+[ext_resource type="Script" path="res://Scripts/BattleScene.gd" id="1_vouak"]
+[ext_resource type="Texture2D" uid="uid://dyyaq08o5mjn" path="res://Sprites/Player_SS/MC_Idle_SS.png" id="2_lsn6s"]
+[ext_resource type="Texture2D" uid="uid://uksfnu3bxnsv" path="res://Sprites/Enemy_SS/EN_Idle_SS.png" id="3_ryeea"]
+[ext_resource type="Script" path="res://Scripts/Enemies.gd" id="4_3b4e0"]
+[ext_resource type="Shader" uid="uid://csji184irp4kx" path="res://Sprites/Shaders/Hit_Flash.res" id="4_b0p0w"]
+[ext_resource type="Texture2D" uid="uid://cgplh4kyqatep" path="res://Sprites/Enemy_SS/EN2_Idle_SS-Sheet.png" id="6_6ytom"]
+[ext_resource type="Texture2D" uid="uid://xygn3w2mff63" path="res://Sprites/Enemy_SS/EN3_Idle_SS-Sheet.png" id="7_whmoh"]
+
+[sub_resource type="Animation" id="Animation_xvb8x"]
+resource_name = "Battle_Start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-642, -64), Vector2(-226, -64)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Enemy:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(965, -82), Vector2(379, -82)]
+}
+
+[sub_resource type="Animation" id="Animation_3rm3g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-226, -64)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Enemy:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(379, -82)]
+}
+
+[sub_resource type="Animation" id="Animation_kusp7"]
+resource_name = "Enemy_Dead"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Enemy:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(379, -82), Vector2(379, 599)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u7g28"]
+_data = {
+"Battle_Start": SubResource("Animation_xvb8x"),
+"Enemy_Dead": SubResource("Animation_kusp7"),
+"RESET": SubResource("Animation_3rm3g")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q5m73"]
+shader = ExtResource("4_b0p0w")
+shader_parameter/enabled = false
+shader_parameter/Tint = Color(1, 1, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiqkl"]
+atlas = ExtResource("2_lsn6s")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42ymp"]
+atlas = ExtResource("2_lsn6s")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uyw87"]
+atlas = ExtResource("2_lsn6s")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ueuye"]
+atlas = ExtResource("2_lsn6s")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x32wo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hiqkl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_42ymp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uyw87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ueuye")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 7.0
+}]
+
+[sub_resource type="Animation" id="Animation_1tv34"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_w6k8r"]
+resource_name = "hit_flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.1, 0.166667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(379, -82), Vector2(389, -82), Vector2(369, -82), Vector2(379, -82)]
+}
+
+[sub_resource type="Animation" id="Animation_c4pee"]
+resource_name = "hit_flash_player"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.1, 0.166667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-226, -64), Vector2(-236, -64), Vector2(-216, -64), Vector2(-226, -64)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0og5h"]
+_data = {
+"RESET": SubResource("Animation_1tv34"),
+"hit_flash": SubResource("Animation_w6k8r"),
+"hit_flash_player": SubResource("Animation_c4pee")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fnel2"]
+shader = ExtResource("4_b0p0w")
+shader_parameter/enabled = false
+shader_parameter/Tint = Color(1, 1, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0hto"]
+atlas = ExtResource("3_ryeea")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lhsr"]
+atlas = ExtResource("3_ryeea")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xnbsi"]
+atlas = ExtResource("3_ryeea")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odkmo"]
+atlas = ExtResource("3_ryeea")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mhjac"]
+atlas = ExtResource("6_6ytom")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6txol"]
+atlas = ExtResource("6_6ytom")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kp2rf"]
+atlas = ExtResource("6_6ytom")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3xtr"]
+atlas = ExtResource("6_6ytom")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0q7f5"]
+atlas = ExtResource("7_whmoh")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1b4cf"]
+atlas = ExtResource("7_whmoh")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dl4ik"]
+atlas = ExtResource("7_whmoh")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4sovn"]
+atlas = ExtResource("7_whmoh")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c2buw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0hto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2lhsr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xnbsi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odkmo")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mhjac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6txol")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kp2rf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l3xtr")
+}],
+"loop": true,
+"name": &"Idle_2",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0q7f5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1b4cf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dl4ik")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4sovn")
+}],
+"loop": true,
+"name": &"Idle_3",
+"speed": 7.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_didxf"]
+shadow_size = 7
+
+[node name="BattleScene" type="Node2D"]
+script = ExtResource("1_vouak")
+
+[node name="Transition" type="AnimationPlayer" parent="."]
+root_node = NodePath("../CombatUI")
+libraries = {
+"": SubResource("AnimationLibrary_u7g28")
+}
+
+[node name="EnemyInfo" type="Node2D" parent="."]
+script = ExtResource("4_3b4e0")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(92, 27)
+
+[node name="Player" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_q5m73")
+position = Vector2(-226, -64)
+scale = Vector2(5.37891, 5.53158)
+sprite_frames = SubResource("SpriteFrames_x32wo")
+animation = &"Idle"
+
+[node name="HitFlashAnimationPlayer" type="AnimationPlayer" parent="Player"]
+libraries = {
+"": SubResource("AnimationLibrary_0og5h")
+}
+
+[node name="Enemy" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_fnel2")
+position = Vector2(379, -82)
+scale = Vector2(6.34375, 6.34375)
+sprite_frames = SubResource("SpriteFrames_c2buw")
+animation = &"Idle_3"
+frame = 3
+frame_progress = 0.206252
+
+[node name="HitFlashAnimationEnemy" type="AnimationPlayer" parent="Enemy"]
+libraries = {
+"": SubResource("AnimationLibrary_0og5h")
+}
+
+[node name="CombatUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -148.0
+offset_top = 239.0
+offset_right = -148.0
+offset_bottom = 239.0
+
+[node name="PlayerHealthLabel" type="Label" parent="CombatUI"]
+layout_mode = 0
+offset_left = -218.0
+offset_top = -509.0
+offset_right = 71.0
+offset_bottom = -486.0
+horizontal_alignment = 1
+
+[node name="EnemyHealthLabel" type="Label" parent="CombatUI"]
+layout_mode = 0
+offset_left = 378.0
+offset_top = -512.0
+offset_right = 671.0
+offset_bottom = -489.0
+label_settings = SubResource("LabelSettings_didxf")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CombatUI"]
+layout_mode = 0
+offset_left = -286.0
+offset_top = -103.0
+offset_right = 747.0
+offset_bottom = 121.0
+alignment = 1
+
+[node name="Attack" type="Button" parent="CombatUI/VBoxContainer"]
+layout_mode = 2
+text = "Attack
+"
+vertical_icon_alignment = 0
+
+[node name="Skill" type="Button" parent="CombatUI/VBoxContainer"]
+layout_mode = 2
+text = "Skill
+"
+vertical_icon_alignment = 0
+
+[node name="Defend" type="Button" parent="CombatUI/VBoxContainer"]
+layout_mode = 2
+text = "Defend
+"
+vertical_icon_alignment = 0
+
+[node name="Run" type="Button" parent="CombatUI/VBoxContainer"]
+layout_mode = 2
+text = "Run
+"
+vertical_icon_alignment = 0

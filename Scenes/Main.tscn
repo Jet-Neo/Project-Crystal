@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://ktxbb5jnb7pl"]
+
+[ext_resource type="PackedScene" uid="uid://c0f2koope4db1" path="res://Objects/player.tscn" id="1_u37m7"]
+[ext_resource type="Script" path="res://Scripts/WildZone.gd" id="2_qyvve"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="2_ylimd"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pwcfu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vhsoy"]
+size = Vector2(388, 277)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_i0n56"]
+specular_color = Color(0.2, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6dlbq"]
+size = Vector2(849.25, 242)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_whbuv"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_u37m7")]
+position = Vector2(87, 111)
+script = ExtResource("2_ylimd")
+
+[node name="WildZone" type="Area2D" parent="."]
+script = ExtResource("2_qyvve")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WildZone"]
+material = SubResource("CanvasItemMaterial_pwcfu")
+position = Vector2(657, 139.5)
+shape = SubResource("RectangleShape2D_vhsoy")
+
+[node name="Sprite2D" type="Sprite2D" parent="WildZone/CollisionShape2D"]
+show_behind_parent = true
+position = Vector2(-0.999985, 3.8147e-06)
+scale = Vector2(386, 275)
+texture = SubResource("CanvasTexture_i0n56")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WildZone"]
+position = Vector2(422.625, 523)
+shape = SubResource("RectangleShape2D_6dlbq")
+
+[node name="Sprite2D" type="Sprite2D" parent="WildZone/CollisionShape2D2"]
+show_behind_parent = true
+position = Vector2(0.375, -1.50001)
+scale = Vector2(846, 241)
+texture = SubResource("CanvasTexture_whbuv")
