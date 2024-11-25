@@ -5,6 +5,7 @@ var enemy_ammount = 3
 var enemy_damage = 0
 var enemy_health = 0
 var enemy_defense = 0
+var enemy_xp = 0
 
 
 @onready var enemyanim = $"../Enemy"
@@ -17,20 +18,23 @@ func _ready():
 			print("Enemy 1")
 			enemy_health = 200
 			enemy_damage = 20
-			enemy_defense = 120
+			enemy_defense = 100
+			enemy_xp = 100
 			enemyanim.play("Idle")
 		2:
 			print("Enemy 2")
 			enemy_health = 150
 			enemy_damage = 30
-			enemy_defense = 70
+			enemy_defense = 50
+			enemy_xp = 70
 			enemyanim.play("Idle_2")
 			
 		3:
 			print("Enemy 3")
 			enemy_health = 80
 			enemy_damage = 10
-			enemy_defense = 50
+			enemy_defense = 20
+			enemy_xp = 50
 			enemyanim.play("Idle_3")
 		
 		

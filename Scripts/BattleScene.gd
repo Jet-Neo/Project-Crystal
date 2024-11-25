@@ -36,6 +36,8 @@ func _ready():
 	enemy_defense = enemy_info.defense()
 	enemy_damage = enemy_info.damage()
 	
+	print("LVL ",GameData.player_level, " | XP: %.0f" % GameData.current_xp, " / %.0f" % GameData.max_xp )
+	
 	camera.make_current()
 	playeranim.play("Idle")
 	
@@ -126,8 +128,25 @@ func enemy_turn():
 
 func end_turn():
 	if enemy_health <= 0:
+		
+		attack_button.visible = false
+		skill_button.visible = false
+		defend_button.visible = false
+		run_button.visible = false
+		
+		attack_button.disabled = true
+		skill_button.disabled = true
+		defend_button.disabled = true
+		run_button.disabled = true
+		
 		await get_tree().create_timer(.4).timeout
 		battle_start.play("Enemy_Dead")
+		
+		#XP INCREASE
+		print("You gained ", enemy_info.enemy_xp, " XP!")
+		GameData.xp_increase(enemy_info.enemy_xp)
+		#________________________
+		
 		print("Enemy defeated!")
 		
 		await get_tree().create_timer(1.0).timeout
@@ -140,13 +159,24 @@ func end_turn():
 		enemy_turn()
 
 func player_buttons():
+	
 	if battle_state == BattleState.PLAYER_TURN:
+		attack_button.visible = true
+		skill_button.visible = true
+		defend_button.visible = true
+		run_button.visible = true
+		
 		attack_button.disabled = false
 		skill_button.disabled = false
 		defend_button.disabled = false
 		run_button.disabled = false
 		
 	elif battle_state == BattleState.ENEMY_TURN:
+		attack_button.visible = false
+		skill_button.visible = false
+		defend_button.visible = false
+		run_button.visible = false
+		
 		attack_button.disabled = true
 		skill_button.disabled = true
 		defend_button.disabled = true
