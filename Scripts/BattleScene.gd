@@ -14,7 +14,7 @@ var enemy_damage
 var player_defense = 100
 var damage
 var player_defending = false
-
+var defense_damage
 
 @onready var enemy_info = get_node("EnemyInfo")
 @onready var playeranim = $Player
@@ -35,6 +35,7 @@ func _ready():
 	enemy_health = enemy_info.health()
 	enemy_defense = enemy_info.defense()
 	enemy_damage = enemy_info.damage()
+	defense_damage = enemy_damage / 2
 	
 	print("LVL ",GameData.player_level, " | XP: %.0f" % GameData.current_xp, " / %.0f" % GameData.max_xp )
 	
@@ -104,13 +105,19 @@ func run_away():
 	emit_signal("battle_ended")
 
 func enemy_turn():
-	if player_defending:
-		enemy_damage = enemy_damage / 2
+	if player_defending == true:
+		damage = 100 * defense_damage / (100 + player_defense)
+		GameData.player_health -= damage
+		hit_flash_animation_player.play("hit_flash_player")
+		print("Enemy attacks you for", defense_damage, "damage!")
+	else:
+		damage = 100 * enemy_damage / (100 + player_defense)
+		GameData.player_health -= damage
+		hit_flash_animation_player.play("hit_flash_player")
+		print("Enemy attacks you for", enemy_damage, "damage!")
+		
+	
 
-	damage = 100 * enemy_damage / (100 + player_defense)
-	GameData.player_health -= damage
-	hit_flash_animation_player.play("hit_flash_player")
-	print("Enemy attacks you for", enemy_damage, "damage!")
 	update_ui()
 	player_defending = false
 	
@@ -161,6 +168,7 @@ func end_turn():
 func player_buttons():
 	
 	if battle_state == BattleState.PLAYER_TURN:
+		
 		attack_button.visible = true
 		skill_button.visible = true
 		defend_button.visible = true

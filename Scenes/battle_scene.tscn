@@ -50,6 +50,21 @@ tracks/0/keys = {
 "values": [Vector2(379, -82), Vector2(379, 599)]
 }
 
+[sub_resource type="Animation" id="Animation_j6bun"]
+resource_name = "Player_Dead"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-226, -64), Vector2(-226, 574)]
+}
+
 [sub_resource type="Animation" id="Animation_3rm3g"]
 length = 0.001
 tracks/0/type = "value"
@@ -75,21 +90,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(379, -82)]
-}
-
-[sub_resource type="Animation" id="Animation_j6bun"]
-resource_name = "Player_Dead"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Player:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-226, -64), Vector2(-226, 574)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u7g28"]
