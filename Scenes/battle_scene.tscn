@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://l7sdqc0aca1e"]
+[gd_scene load_steps=51 format=3 uid="uid://l7sdqc0aca1e"]
 
 [ext_resource type="Script" path="res://Scripts/BattleScene.gd" id="1_vouak"]
 [ext_resource type="Texture2D" uid="uid://dyyaq08o5mjn" path="res://Sprites/Player_SS/MC_Idle_SS.png" id="2_lsn6s"]
@@ -314,8 +314,140 @@ animations = [{
 "speed": 7.0
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qpgry"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
 [sub_resource type="LabelSettings" id="LabelSettings_didxf"]
 shadow_size = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i75p5"]
+bg_color = Color(0.109463, 0.00211479, 1.20327e-08, 1)
+border_width_left = 5
+border_width_right = 5
+border_color = Color(0.760843, 0.0834471, 3.85046e-07, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ggbyn"]
+bg_color = Color(0.282772, 0.0118961, 7.21961e-08, 1)
+border_width_left = 5
+border_width_right = 5
+border_color = Color(0.760843, 0.0834471, 3.85046e-07, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_60mmj"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_right = 5
+border_color = Color(0.760843, 0.0834471, 3.85046e-07, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rvpdu"]
+bg_color = Color(0, 0.0685182, 0.161474, 1)
+border_width_left = 5
+border_width_right = 5
+border_color = Color(0, 0.407283, 0.755181, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ydqkf"]
+bg_color = Color(1.20327e-07, 0.197365, 0.387287, 1)
+border_width_left = 5
+border_width_right = 5
+border_color = Color(0, 0.407283, 0.755181, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vnhkb"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_right = 5
+border_color = Color(0, 0.407283, 0.755181, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iusht"]
+bg_color = Color(0.169079, 0.05379, 0, 1)
+border_width_left = 5
+border_width_right = 5
+border_color = Color(0.772957, 0.346972, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aonqr"]
+bg_color = Color(0.318618, 0.126391, 9.62615e-08, 1)
+border_width_left = 5
+border_width_right = 5
+border_color = Color(0.772957, 0.346972, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxnuq"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_right = 5
+border_color = Color(0.772957, 0.346972, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fkpmq"]
+bg_color = Color(0.00180898, 0.107093, 1.20327e-08, 1)
+border_width_left = 5
+border_width_right = 5
+border_color = Color(0.0498905, 0.59515, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3j0ta"]
+bg_color = Color(0.00699741, 0.22982, 4.81308e-08, 1)
+border_width_left = 5
+border_width_right = 5
+border_color = Color(0.0498905, 0.59515, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_akvma"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_right = 5
+border_color = Color(0.0498905, 0.59515, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="BattleScene" type="Node2D"]
 script = ExtResource("1_vouak")
@@ -335,7 +467,7 @@ position = Vector2(92, 27)
 [node name="Player" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_q5m73")
 position = Vector2(-226, -64)
-scale = Vector2(5.37891, 5.53158)
+scale = Vector2(1.89258, 1.9463)
 sprite_frames = SubResource("SpriteFrames_x32wo")
 animation = &"Idle"
 
@@ -347,7 +479,7 @@ libraries = {
 [node name="Enemy" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_fnel2")
 position = Vector2(379, -82)
-scale = Vector2(6.34375, 6.34375)
+scale = Vector2(2.46875, 2.46875)
 sprite_frames = SubResource("SpriteFrames_c2buw")
 animation = &"Idle_3"
 frame = 3
@@ -365,6 +497,20 @@ offset_left = -148.0
 offset_top = 239.0
 offset_right = -148.0
 offset_bottom = 239.0
+
+[node name="BattleLog" type="Label" parent="CombatUI"]
+layout_mode = 2
+offset_left = 52.0
+offset_top = -81.0
+offset_right = 808.0
+offset_bottom = 91.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_qpgry")
+text = "Battle Start!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="PlayerHealthLabel" type="Label" parent="CombatUI"]
 layout_mode = 0
@@ -385,32 +531,71 @@ horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CombatUI"]
 layout_mode = 0
-offset_left = -286.0
-offset_top = -103.0
-offset_right = 747.0
-offset_bottom = 121.0
+offset_left = -241.0
+offset_top = -113.0
+offset_right = -22.0
+offset_bottom = 111.0
 alignment = 1
 
 [node name="Attack" type="Button" parent="CombatUI/VBoxContainer"]
 layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_i75p5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ggbyn")
+theme_override_styles/normal = SubResource("StyleBoxFlat_60mmj")
 text = "Attack
 "
 vertical_icon_alignment = 0
 
 [node name="Skill" type="Button" parent="CombatUI/VBoxContainer"]
 layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_rvpdu")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ydqkf")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vnhkb")
 text = "Skill
 "
 vertical_icon_alignment = 0
 
 [node name="Defend" type="Button" parent="CombatUI/VBoxContainer"]
 layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_iusht")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_aonqr")
+theme_override_styles/normal = SubResource("StyleBoxFlat_jxnuq")
 text = "Defend
 "
 vertical_icon_alignment = 0
 
 [node name="Run" type="Button" parent="CombatUI/VBoxContainer"]
 layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_fkpmq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3j0ta")
+theme_override_styles/normal = SubResource("StyleBoxFlat_akvma")
 text = "Run
 "
 vertical_icon_alignment = 0
+
+[node name="SkillMenu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -434.0
+offset_top = 368.0
+offset_right = 599.0
+offset_bottom = 368.0
+
+[node name="BackButton" type="Button" parent="SkillMenu"]
+layout_mode = 2
+offset_left = -82.0
+offset_top = -73.0
+offset_right = 26.0
+offset_bottom = -30.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_rvpdu")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ydqkf")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vnhkb")
+text = "Back
+"
+
+[node name="SkillList" type="VBoxContainer" parent="SkillMenu"]
+layout_mode = 0
+offset_left = 41.0
+offset_top = -234.0
+offset_right = 314.0
+offset_bottom = -5.0
