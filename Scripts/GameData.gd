@@ -1,50 +1,68 @@
 # GameData.gd
 extends Node
 
-# Player stats
+# Player position
 var player_position = Vector2.ZERO
-var player_maxhealth = 100
-var player_health = 100
-var player_attack = 40
-var player_defense = 80
-var player_speed = 50
 
 # Player XP and level
 var player_level = 1
 var max_xp = 100
 var current_xp = 0
-var xp
 
-# Player MP
-var player_maxmp = 100
-var player_mp = 100
-
-# Player skills
-var player_skills = [
-	{"name": "Fireball", "damage": 80, "mp_cost": 10},
-	{"name": "Ice Shard", "damage": 60, "mp_cost": 8},
-	{"name": "Heal", "damage": -20, "mp_cost": 15},
-	{"name": "Poison Dart", "damage": 20, "mp_cost": 12, "effect": {"type": "POISON", "duration": 3, "potency": 10}},
-	{"name": "Stun Strike", "damage": 30, "mp_cost": 15, "effect": {"type": "STUN", "duration": 1, "potency": 0}}
+# Party members data
+var party_members = [
+	{
+		"name": "Hero",
+		"health": 100,
+		"max_health": 100,
+		"mp": 50,
+		"max_mp": 50,
+		"attack": 40,
+		"defense": 80,
+		"speed": 50,
+		"skills": [
+			{"name": "Fireball", "damage": 80, "mp_cost": 10, "effect": {"type": "BURN", "duration": 3, "potency": 5}},
+			{"name": "Heal", "damage": -50, "mp_cost": 15}
+		]
+	},
+	{
+		"name": "Mage",
+		"health": 80,
+		"max_health": 80,
+		"mp": 100,
+		"max_mp": 100,
+		"attack": 30,
+		"defense": 50,
+		"speed": 40,
+		"skills": [
+			{"name": "Ice Shard", "damage": 60, "mp_cost": 8, "effect": {"type": "FREEZE", "duration": 2, "potency": 0}},
+			{"name": "Thunder Strike", "damage": 70, "mp_cost": 12}
+		]
+	},
+	{
+		"name": "Warrior",
+		"health": 120,
+		"max_health": 120,
+		"mp": 30,
+		"max_mp": 30,
+		"attack": 60,
+		"defense": 100,
+		"speed": 30,
+		"skills": [
+			{"name": "Slash", "damage": 50, "mp_cost": 10},
+			{"name": "Defend", "damage": 0, "mp_cost": 5, "effect": {"type": "DEFENSE_BUFF", "duration": 2, "potency": 20}}
+		]
+	}
 ]
 
-# Add a new skill to the player's skill list
-func add_skill(skill_name: String, skill_damage: int, skill_mp_cost: int, effect: Dictionary = {}):
-	var new_skill = {
-		"name": skill_name,
-		"damage": skill_damage,
-		"mp_cost": skill_mp_cost
-	}
-	if effect:
-		new_skill["effect"] = effect
-	player_skills.append(new_skill)
+# Active party members in battle
+var current_party = []
 
-# Remove a skill from the player's skill list
-func remove_skill(skill_name: String):
-	for i in range(player_skills.size()):
-		if player_skills[i].name == skill_name:
-			player_skills.remove_at(i)
-			break
+# Initialize the party
+func initialize_party():
+	if current_party.is_empty():  # Only initialize if the party is empty
+		current_party = party_members.duplicate(true)  # Deep copy to avoid modifying original data
+	print("Party initialized with ", current_party.size(), " members.")
 
 # Level up and increase stats
 func xp_increase(xp):
@@ -57,18 +75,31 @@ func xp_increase(xp):
 		print("YOU ARE NOW LEVEL ", player_level, " AND YOUR MAX XP IS NOW %.0f" % max_xp)
 		
 		level_up()
-
+		
 func level_up():
-	player_maxhealth += 50
-	player_health += 50
-	player_attack += 30
-	player_defense += 40
-	player_speed += 20
-	player_maxmp += 20
-	player_mp = player_maxmp  # Restore MP on level up
+	for member in current_party:
+		member.max_health += 50
+		member.health += 50
+		member.attack += 30
+		member.defense += 40
+		member.speed += 20
+		member.max_mp += 20
+		member.mp = member.max_mp
 	
-	print("HP + 50 = ", player_maxhealth)
-	print("Attack + 30 = ", player_attack)
-	print("Defense + 40 = ", player_defense)
-	print("Speed + 20 = ", player_speed)
-	print("MP + 20 = ", player_maxmp)
+	print("All party members leveled up!")
+	print("HP + 50, Attack + 30, Defense + 40, Speed + 20, MP + 20")
+
+
+func save_party_state():
+	print("Saving party state...")
+	for i in range(current_party.size()):
+		party_members[i].health = current_party[i].health
+		party_members[i].mp = current_party[i].mp
+		print("Saved ", current_party[i].name, ": ", current_party[i].health, " HP, ", current_party[i].mp, " MP")
+
+func restore_party_state():
+	print("Restoring party state...")
+	for i in range(party_members.size()):
+		current_party[i].health = party_members[i].health
+		current_party[i].mp = party_members[i].mp
+		print("Restored ", current_party[i].name, ": ", current_party[i].health, " HP, ", current_party[i].mp, " MP")
